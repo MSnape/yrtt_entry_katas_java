@@ -28,7 +28,13 @@ public class Exercise003 {
 
     public static int[] rowWeights(final int[] weights) {
         // Your code here!
-        return new int[]{0, 0};
+        int[] teamWeights = new int[2];
+        int starterCount = 0;
+        for (int i = 0; i < weights.length; i++) {
+            teamWeights[starterCount] += weights[i];
+            starterCount = (starterCount == 0) ? 1 : 0;
+        }
+        return teamWeights;
     }
 
 }

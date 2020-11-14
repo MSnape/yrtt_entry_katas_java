@@ -1,5 +1,7 @@
 package com.techreturners.exercise005;
 
+import java.lang.Character;
+
 public class Exercise005 {
 
     // Introduction
@@ -11,22 +13,44 @@ public class Exercise005 {
     // around the arena; in discontiguous seating arrangements, the wave can instead reflect back and forth through the crowd. When the gap in seating is 
     // narrow, the wave can sometimes pass through it. Usually only one wave crest will be present at any given time in an arena, although simultaneous, 
     // counter-rotating waves have been produced. (Source Wikipedia)
-    
+
     // Task
     // In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return 
     // that string in an array where an uppercase letter is a person standing up. 
-    
+
     // Rules
     // 1.  The input string will always be lower case but maybe empty.
     // 2.  If the character in the string is whitespace then pass over it as if it was an empty seat
-    
+
     // Example
     // wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
 
     // Good luck and enjoy!
 
     public String[] mexicanWave(String str) {
+
         // Your code here!
-        return new String[] {};
+        // Calculate how many alpha chars there are
+        int alphaCount = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.substring(i, i + 1).matches("[A-Za-z]"))
+                alphaCount++;
+        }
+
+        String[] wave = new String[alphaCount];
+
+        if (str.isEmpty()) {
+            return new String[0];
+        } else {
+            //for each alpha character create a new word with individual positional uppercase
+            int j = 0;
+            for (int i = 0; i < str.length(); i++) {
+                if (str.substring(i, i + 1).matches("[A-Za-z]")) {
+                    wave[j] = str.substring(0, i) + str.substring(i, i + 1).toUpperCase() + str.substring(i + 1, str.length());
+                    j++;
+                }
+            }
+            return wave;
+        }
     }
 }
